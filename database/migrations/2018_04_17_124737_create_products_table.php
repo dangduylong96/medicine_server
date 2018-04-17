@@ -17,11 +17,11 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('id_category')->unsigned();
-            $table->foreign('id_category')->references('id')->on('category');
-            $table->float('price');
+            $table->foreign('id_category')->references('id')->on('category')->onDelete('cascade');
+            $table->float('price',8,2);
             $table->text('img');
             $table->text('desc');
-            $table->float('sales');
+            $table->float('sales',8,2);
             $table->tinyInteger('status');
             $table->timestamps();
         });
