@@ -1,0 +1,12 @@
+﻿Customer:
+- Duy trì đăng nhập với các thông tin cơ bản: Họ và tên, ngày tháng năm sinh, sdt, tên nhà thuốc, địa chỉ, mã số thuế.
+- Đặt hàng theo số lượng.
+- Nhận thông báo khi thay đổi thông tin sản phẩm hoặc post sp mới.
+- tìm sản phẩm theo danh mục.
+Admin:
+- Có thông tin trình dược đầu trang để tiện liên hệ.
+- cập nhật sp
+- thay đổi thông tin sp
+- nhận đơn thông qua excel
+
+sản phẩm: tên, loại, giá, hình, mô tả, sales, status
