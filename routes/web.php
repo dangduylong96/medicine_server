@@ -11,12 +11,10 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
 Route::get('/','adminController@adminLogin');
 Route::post('login','adminController@adminCheckLogin')->name('login');
+Route::get('dang-xuat.html','adminController@adminLogout');
 
 Route::group(['prefix' => 'admin','middleware'=>'checkLogin'], function() {
     Route::get('trang-chu.html','adminController@adminHome')->name('home');
@@ -29,6 +27,12 @@ Route::group(['prefix' => 'admin','middleware'=>'checkLogin'], function() {
     Route::post('them-loai.html','adminCategoryController@addPostCategory')->name('add_category');
     Route::get('sua-loai-{id}.html','adminCategoryController@editCategory');
     Route::post('sua-loai-{id}.html','adminCategoryController@editPostCategory');
-    // Route::post('them-loai.html','adminCategoryController@addPostCategory')->name('add_category');
     Route::get('xoa-loai-{id}.html','adminCategoryController@removeCategory');
+    //Sản phẩm
+    Route::get('danh-sach-san-pham.html','adminProductController@getProduct');
+    Route::get('them-san-pham.html','adminProductController@addProduct');
+    Route::post('them-san-pham.html','adminProductController@addPostProduct')->name('add_product');
+    Route::get('sua-san-pham-{id}.html','adminProductController@editProduct');
+    Route::post('sua-san-pham-{id}.html','adminProductController@editPostProduct');
+    Route::get('xoa-san-pham-{id}.html','adminProductController@deleteProduct');
 });

@@ -26,6 +26,11 @@ class adminController extends Controller
         }
         return view('admin.login.login')->with('message_login','Thông tin đăng nhập chưa chính xác!!');
     }
+    //Đăng xuất
+    public function adminLogout(){
+        Auth::logout();
+        return view('admin.login.login');
+    }
 
     //Trang chủ
     public function adminHome(){
@@ -55,7 +60,7 @@ class adminController extends Controller
         if($request->hasFile('image')){
             $file=$request->file('image');
             $image_name=str_random(10).$file->getClientOriginalName();
-            while(File::exists('public/images/admin'.$image_name))
+            while(File::exists('public/images/admin/'.$image_name))
             {
                 $image_name=str_random(10).$file->getClientOriginalName();
             }

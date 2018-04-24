@@ -88,6 +88,7 @@
         <script src="{{asset('public/admin/dist/js/pages/dashboard.js')}}"></script>
         <!-- AdminLTE for demo purposes -->
         <script src="{{asset('public/admin/dist/js/demo.js')}}"></script>
+        <script src="{{asset('public/js/number.js')}}"></script>
         <script>
             var add_active=$("li[class='active']").attr("data-active");
             var array = add_active.split(",");
