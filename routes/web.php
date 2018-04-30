@@ -1,17 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-
 Route::get('/','adminController@adminLogin');
 Route::post('login','adminController@adminCheckLogin')->name('login');
 Route::get('dang-xuat.html','adminController@adminLogout');
@@ -36,3 +24,9 @@ Route::group(['prefix' => 'admin','middleware'=>'checkLogin'], function() {
     Route::post('sua-san-pham-{id}.html','adminProductController@editPostProduct');
     Route::get('xoa-san-pham-{id}.html','adminProductController@deleteProduct');
 });
+
+/***
+ * API gọi từ app di động lên
+ */
+Route::post('register','ApiController@Register');
+Route::get('getToken','ApiController@getToken');
