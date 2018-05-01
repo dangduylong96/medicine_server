@@ -28,5 +28,7 @@ Route::group(['prefix' => 'admin','middleware'=>'checkLogin'], function() {
 /***
  * API gọi từ app di động lên
  */
+Route::post('app-login','ApiController@Login');
 Route::post('register','ApiController@Register');
 Route::get('getToken','ApiController@getToken');
+Route::get('checkTokenApp','ApiController@checkTokenApp');

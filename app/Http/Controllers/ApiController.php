@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Validator;
+use Auth;
+use JWTAuth;
 use App\User;
 use App\UserDetail;
 
@@ -14,6 +16,43 @@ class ApiController extends Controller
             '_token'=>csrf_token()
         ];
         echo json_encode($arr);
+    }
+
+    public function checkTokenApp(Request $request){
+        $token=$request->token;
+    }
+
+    public function Login(Request $request){
+        $validator = Validator::make($request->all(), [
+            'username' => 'required',
+            'password' => 'required'
+        ]);
+        if($validator->fails()){
+            $result=[
+                'status'=>404,
+                'message'=>'Error'
+            ];
+            return json_encode($result);
+        }else{
+            $username=$request->username;
+            $password=$request->password;
+            if(Auth::attempt(['username' => $username, 'password' => $password])){
+                //Đăng nhập thành công
+                $token = JWTAuth::attempt(['username' => $username, 'password' => $password]);
+                $result=[
+                    'status'=>200,
+                    'message'=>'Success',
+                    '_token'=>$token
+                ];
+                return json_encode($result);
+            }else{
+                $result=[
+                    'status'=>404,
+                    'message'=>'Error'
+                ];
+                return json_encode($result);
+            }  
+        }
     }
 
     public function Register(Request $request){
