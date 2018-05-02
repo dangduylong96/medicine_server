@@ -32,3 +32,7 @@ Route::post('app-login','ApiController@Login');
 Route::post('register','ApiController@Register');
 Route::get('getToken','ApiController@getToken');
 Route::get('checkTokenApp','ApiController@checkTokenApp');
+
+Route::group(['middleware' => 'appMiddleware'], function() {
+    Route::get('/allProduct','apiProductController@getAllProduct');
+});

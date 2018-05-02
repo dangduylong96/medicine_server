@@ -38,7 +38,19 @@ class ApiController extends Controller
             $password=$request->password;
             if(Auth::attempt(['username' => $username, 'password' => $password])){
                 //Đăng nhập thành công
-                $token = JWTAuth::attempt(['username' => $username, 'password' => $password]);
+                $user=Auth::user();
+                $user_detail=UserDetail::where('id_user',$user->id)->first();
+                $custom=[
+                    'id'=>$user->id,
+                    'username'=>$user->username,
+                    'name'=>$user_detail->name,
+                    'dob'=>$user_detail->dob,
+                    'phone'=>$user_detail->phone,
+                    'name_shop'=>$user_detail->name_shop,
+                    'address'=>$user_detail->address,
+                    'tax_code'=>$user_detail->tax_code
+                ];
+                $token = JWTAuth::customClaims($custom)->fromUser($user);
                 $result=[
                     'status'=>200,
                     'message'=>'Success',
