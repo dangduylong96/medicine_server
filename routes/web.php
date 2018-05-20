@@ -34,5 +34,13 @@ Route::get('getToken','ApiController@getToken');
 Route::get('checkTokenApp','ApiController@checkTokenApp');
 
 Route::group(['middleware' => 'appMiddleware'], function() {
+    //Lấy sản phẩm trang home
     Route::get('/allProduct','apiProductController@getAllProduct');
+    //Lấy thông tin sản phẩm
+    Route::get('/getDetailProduct','apiProductController@getDetailProduct');
+    //Tìm kiếm sản phẩm
+    Route::get('/searchProduct','apiProductController@searchProduct');
+    
 });
+//Lấy loại sản phẩm
+Route::get('/getCategory','apiCategoryController@getCategory');
