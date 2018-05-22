@@ -28,10 +28,6 @@ class apiProductController extends Controller
             'product'=>$result
         ];
         return json_encode($reponse);
-        // $payload = JWTAuth::parseToken()->getPayload();
-        // echo $payload->get('name_shop');
-        // // print_r($payload);
-        // exit;
     }
     //Lấy thông tin sản phẩm
     public function getDetailProduct(Request $request){

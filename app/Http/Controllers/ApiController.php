@@ -39,6 +39,7 @@ class ApiController extends Controller
             if(Auth::attempt(['username' => $username, 'password' => $password])){
                 //Đăng nhập thành công
                 $user=Auth::user();
+                $user=User::find($user->id);
                 $user_detail=UserDetail::where('id_user',$user->id)->first();
                 $custom=[
                     'id'=>$user->id,

@@ -40,7 +40,14 @@ Route::group(['middleware' => 'appMiddleware'], function() {
     Route::get('/getDetailProduct','apiProductController@getDetailProduct');
     //Tìm kiếm sản phẩm
     Route::get('/searchProduct','apiProductController@searchProduct');
-    
+    //Lấy thông tin người dùng từ token
+    Route::get('/getDetailFromToken','apiUserController@getDetailFromToken');
+    //Cập nhập thông tin ng dùng
+    Route::post('UpdateDetailFromToken','apiUserController@updateDetailFromToken');
+    //Đặt hàng
+    Route::post('Order','apiOrderController@postOrder');
 });
 //Lấy loại sản phẩm
 Route::get('/getCategory','apiCategoryController@getCategory');
+
+
