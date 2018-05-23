@@ -46,6 +46,8 @@ Route::group(['middleware' => 'appMiddleware'], function() {
     Route::post('UpdateDetailFromToken','apiUserController@updateDetailFromToken');
     //Đặt hàng
     Route::post('Order','apiOrderController@postOrder');
+    //Lấy thông tin đơn hàng
+    Route::get('/getOrderHistory','apiOrderController@getOrderHistory');
 });
 //Lấy loại sản phẩm
 Route::get('/getCategory','apiCategoryController@getCategory');
