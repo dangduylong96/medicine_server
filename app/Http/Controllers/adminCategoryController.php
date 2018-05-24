@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
+use App\Product;
 class adminCategoryController extends Controller
 {
     public function getCategory(){
-        $data['category']=Category::all();
+        $data['category']=Category::where('status',1)->get();
         return view('admin.category.category',$data);
     }
     public function addCategory(){
@@ -55,7 +56,14 @@ class adminCategoryController extends Controller
         if(!isset($category)){
             return redirect('admin/danh-sach-loai.html')->with('message',['status'=>'danger','content'=>'Loại không tồn tại !!']);
         }
-        $category->delete();
+        $category->status=0;
+        $category->save();
+        //Ẩn tất cả sản phẩm
+        $product=Product::where('id_category',$category->id)->get();
+        foreach($product as $k=>$v){
+            $v->status=0;
+            $v->save();
+        }
         return redirect('admin/danh-sach-loai.html')->with('message',['status'=>'success','content'=>'Xóa loại thành công!!']);
     }
 }

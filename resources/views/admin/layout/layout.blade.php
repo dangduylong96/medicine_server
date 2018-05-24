@@ -60,12 +60,11 @@
             <!-- /.content-wrapper -->
             <footer class="main-footer">
                 <div class="pull-right hidden-xs">
-                    <b>Version</b> 2.4.0
+                    <b>Version</b> 1.0
                 </div>
-                <strong>Copyright &copy; 2018-2019 <a href="#">Tìm việc nhanh</a>.</strong> All rights
-                reserved.
+                <strong>Copyright &copy; 2018-2019 <a href="#">Mua bán thuốc</a>.</strong> Duy Long Developer.
             </footer>
-            <!-- Add the sidebar's background. This div must be placed
+            <!-- Add the sidebars background. This div must be placed
                 immediately after the control sidebar -->
             <div class="control-sidebar-bg"></div>
         </div>

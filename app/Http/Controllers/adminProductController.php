@@ -11,7 +11,7 @@ use File;
 class adminProductController extends Controller
 {
     public function getProduct(){
-        $data['product']=Product::where(['status'=>1])->get();
+        $data['product']=Product::where(['status'=>1])->orderBy('id','desc')->get();
         return view('admin.product.product',$data);
     }
     //Thêm sản phẩm
@@ -94,8 +94,27 @@ class adminProductController extends Controller
             return redirect('admin/danh-sach-san-pham.html')->with('message',['status'=>'error','content'=>'Sản phẩm không tồn tại!!']);
         }
         //Xóa hình cũ
-        File::delete('public/images/product/'.$product->img);
-        $product->delete();
+        // File::delete('public/images/product/'.$product->img);
+        $product->status=0;
+        $product->save();
         return redirect('admin/danh-sach-san-pham.html')->with('message',['status'=>'success','content'=>'Xóa sản phẩm thành công!!']);
+    }
+    //Thêm sản phảm mới
+    public function checkNewProduct($id){
+        //Kiểm tra có tồn tại sản phẩm không?
+        $product=Product::find($id);
+        if(!isset($product)){
+            return redirect('admin/danh-sach-san-pham.html')->with('message',['status'=>'error','content'=>'Sản phẩm không tồn tại!!']);
+        }
+        if($product->check_new==0){
+            $product->check_new=1;
+            $product->save();
+            return redirect('admin/danh-sach-san-pham.html')->with('message',['status'=>'success','content'=>'Sản phẩm đã trở thành sản phẩm mới!!']);
+        }else{
+            $product->check_new=0;
+            $product->save();
+            return redirect('admin/danh-sach-san-pham.html')->with('message',['status'=>'success','content'=>'Sản phẩm đã trở thành sản phẩm bình thường!!']);
+        }
+        
     }
 }

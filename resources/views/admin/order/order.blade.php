@@ -4,11 +4,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Quản Lí sản phẩm
+            Quản Lí đơn hàng
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Danh sách sản phẩm</li>
+            <li class="active">Danh sách đơn hàng</li>
         </ol>
     </section>
     <!-- Main content -->
@@ -40,11 +40,11 @@
                         <thead>
                             <tr>
                                 <th>STT</th>
-                                <th>Tên sản phẩm</th>
-                                <th>loại</th>
-                                <th>Hình</th>
-                                <th>Giá</th>
-                                <th>Sales</th>
+                                <th>Họ tên</th>
+                                <th>Tên cửa hàng</th>
+                                <th>Ngày đặt</th>
+                                <th>Tổng tiền</th>
+                                <th>Trạng thái</th>                                
                                 <th>Thao tác</th>
                             </tr>
                         </thead>
@@ -52,18 +52,17 @@
                         <?php
                             $i=1;
                         ?>
-                        @foreach($product as $k=>$v)
+                        @foreach($order as $k=>$v)
                             <tr>
                                 <td>{{$i}}</td>
-                                <td>{{$v->name}}</td>
-                                <td>{{$v->fk_category->name}}</td>
-                                <td><img src="{{url('public/images/product').'/'.$v->img}}" width="80" height="80"></td>
-                                <td>{{number_format($v->price)}}</td>
-                                <td>{{$v->sales}}</td>
+                                <td>{{$v->fk_user->fk_user_detail->name}}</td>
+                                <td>{{$v->fk_user->fk_user_detail->name_shop}}</td>
+                                <td>{{date('d/m/Y',strtotime($v->created_at))}}</td>
+                                <td style="font-weight: bold">{{number_format(MyLibrary::getTotalOrder($v->id))}} VNĐ</td>
+                                <th><span class="label label-success">Đã giao</span></th>
                                 <td>
-                                    <a href="<?php echo url('/admin/sua-san-pham-'.$v->id.'.html')?>"><button type="button" class="btn btn-info">Sửa</button></a>
-                                    <a href="<?php echo url('/admin/xoa-san-pham-'.$v->id.'.html')?>"><button type="button" class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này? Xóa sản phẩm sẽ k thể khôi phục lại đc?')">Xóa</button></a>
-                                    <a href="<?php echo url('/admin/check-san-pham-moi-'.$v->id.'.html')?>"><button type="button" class="btn btn-success">{{$v->check_new==0?'SP mới':'X'}}</button></a>
+                                    <a target="_blank" href="<?php echo url('/admin/chi-tiet-don-hang-'.$v->id.'.html')?>"><button type="button" class="btn btn-primary">Chi tiết</button></a>
+                                    <a href="<?php echo url('/admin/chuyen-trang-thai-'.$v->id.'.html')?>" onclick="return confirm('Bạn có chắc chắn muốn chuyển trạng thái đơn hàng sang chưa giao???')"><button type="button" class="btn btn-warning">Chưa giao</button></a>
                                 </td>
                             </tr>
                             <?php $i++; ?>

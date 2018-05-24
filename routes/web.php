@@ -19,10 +19,19 @@ Route::group(['prefix' => 'admin','middleware'=>'checkLogin'], function() {
     //Sản phẩm
     Route::get('danh-sach-san-pham.html','adminProductController@getProduct');
     Route::get('them-san-pham.html','adminProductController@addProduct');
+    Route::get('check-san-pham-moi-{id}.html','adminProductController@checkNewProduct');
     Route::post('them-san-pham.html','adminProductController@addPostProduct')->name('add_product');
     Route::get('sua-san-pham-{id}.html','adminProductController@editProduct');
     Route::post('sua-san-pham-{id}.html','adminProductController@editPostProduct');
     Route::get('xoa-san-pham-{id}.html','adminProductController@deleteProduct');
+    //Quản lí đơn hàng
+    Route::get('danh-sach-don-hang.html','adminOrderController@getAllOrderSuccess');//đã giao
+    Route::get('don-hang-chua-giao.html','adminOrderController@getAllOrderWating');//chưa giao
+    Route::get('chuyen-trang-thai-{id}.html','adminOrderController@changeStatus');
+    Route::get('huy-don-{id}.html','adminOrderController@removeOrder');
+    Route::get('xuat-exel.html','adminOrderController@exportExel');
+    Route::post('xuat-exel.html','adminOrderController@exportPostExel')->name('post_export_exel');
+    Route::get('chi-tiet-don-hang-{id}.html','adminOrderController@detailOrder');
 });
 
 /***
@@ -51,5 +60,5 @@ Route::group(['middleware' => 'appMiddleware'], function() {
 });
 //Lấy loại sản phẩm
 Route::get('/getCategory','apiCategoryController@getCategory');
-
-
+//Lấy sản phẩm mới
+Route::get('/newProduct','apiProductController@getNewProduct');

@@ -49,6 +49,20 @@
                     <li class="<?php if(strpos(url()->current(),'them-san-pham.html')!==false) echo 'active'?>" data-active="product"><a href="them-san-pham.html"><i class="fa fa-circle-o text-yellow"></i> Thêm sản phẩm</a></li>
                 </ul>
             </li>
+            <li class="treeview" id="order">
+                <a href="#">
+                <i class="fa fa-history"></i>
+                <span>Quản lí đơn hàng</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="<?php if(strpos(url()->current(),'danh-sach-don-hang.html')!==false) echo 'active'?>" data-active="order"><a href="danh-sach-don-hang.html"><i class="fa fa-circle-o text-yellow"></i> Đơn hàng đã giao</a></li>
+                    <li class="<?php if(strpos(url()->current(),'don-hang-chua-giao.html')!==false) echo 'active'?>" data-active="order"><a href="don-hang-chua-giao.html"><i class="fa fa-circle-o text-yellow"></i> Đơn hàng chưa giao</a></li>
+                    <li class="<?php if(strpos(url()->current(),'xuat-exel.html')!==false) echo 'active'?>" data-active="order"><a href="xuat-exel.html"><i class="fa fa-circle-o text-yellow"></i> Xuất file exel</a></li>
+                </ul>
+            </li>
     </section>
     <!-- /.sidebar -->
 </aside>

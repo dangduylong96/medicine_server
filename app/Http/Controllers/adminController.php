@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\adminDetail;
+use App\User;
+use App\Product;
+use App\Category;
+use App\Order;
 use File;
 class adminController extends Controller
 {
@@ -34,7 +38,11 @@ class adminController extends Controller
 
     //Trang chủ
     public function adminHome(){
-        return view('admin.dashboard.dashboard');
+        $data['count_user']=User::count();
+        $data['count_order']=Order::where('status','!=',3)->count();
+        $data['count_product']=Product::where('status','!=',0)->count();
+        $data['count_category']=Category::where('status','!=',0)->count();
+        return view('admin.dashboard.dashboard',$data);
     }
     //Thông tin admin
     public function adminDetail(){

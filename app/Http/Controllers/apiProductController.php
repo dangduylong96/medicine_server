@@ -81,4 +81,27 @@ class apiProductController extends Controller
         ];
         return json_encode($reponse);
     }
+    //Lấy sản phẩm mới
+    public function getNewProduct(){
+        $new=Product::where('check_new',1)->get();
+        $result=[];
+        foreach($new as $v){
+            $result[]=[
+                'id'=>$v->id,
+                'name'=>$v->name,
+                'category'=>$v->fk_category->name,
+                'image'=>$v->img,
+                'price'=>number_format($v->price),
+                'sales'=>number_format($v->sales)
+            ];
+        }
+        $total=count($result);
+        $reponse=[
+            'status'=>200,
+            'message'=>'Success',
+            'total'=>$total,
+            'data'=>$result
+        ];
+        return json_encode($reponse);
+    }
 }

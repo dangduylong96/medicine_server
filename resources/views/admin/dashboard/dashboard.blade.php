@@ -20,7 +20,7 @@
                 <!-- small box -->
                 <div class="small-box bg-aqua">
                     <div class="inner">
-                        <h3>10</h3>
+                        <h3>{{$count_user}}</h3>
                         <p>Tài khoản</p>
                     </div>
                     <div class="icon">
@@ -34,7 +34,7 @@
                 <!-- small box -->
                 <div class="small-box bg-green">
                     <div class="inner">
-                        <h3>20<sup style="font-size: 20px">+</sup></h3>
+                        <h3>{{$count_order}}<sup style="font-size: 20px">+</sup></h3>
                         <p>Đơn hàng</p>
                     </div>
                     <div class="icon">
@@ -48,7 +48,7 @@
                 <!-- small box -->
                 <div class="small-box bg-yellow">
                     <div class="inner">
-                        <h3>100</h3>
+                        <h3>{{$count_product}}</h3>
                         <p>Sản phẩm</p>
                     </div>
                     <div class="icon">
@@ -62,7 +62,7 @@
                 <!-- small box -->
                 <div class="small-box bg-red">
                     <div class="inner">
-                        <h3>5<sup style="font-size: 20px">+</sup></h3>
+                        <h3>{{$count_category}}<sup style="font-size: 20px">+</sup></h3>
                         <p>Loại</p>
                     </div>
                     <div class="icon">
