@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use JWTAuth;
 use App\Product;
+use App\UpdateVersion;
 class apiProductController extends Controller
 {
     public function getAllProduct(Request $request){
@@ -81,7 +82,7 @@ class apiProductController extends Controller
         ];
         return json_encode($reponse);
     }
-    //Lấy sản phẩm mới
+    //Lấy sản phẩm mới và kiểm tra phiên bản
     public function getNewProduct(){
         $new=Product::where('check_new',1)->get();
         $result=[];
@@ -96,9 +97,12 @@ class apiProductController extends Controller
             ];
         }
         $total=count($result);
+        //Lấy phiên bản xem thử có cập nhập hay không?
+        $version=UpdateVersion::find(1);
         $reponse=[
             'status'=>200,
             'message'=>'Success',
+            'version'=>$version->version,
             'total'=>$total,
             'data'=>$result
         ];
